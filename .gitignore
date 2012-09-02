@@ -16,3 +16,9 @@
 .DS_Store
 .project
 .idea
+
+#Ignore other unneeded files
+doc/
+*.swp
+bundler_stubs/
+
