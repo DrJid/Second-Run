@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name , :password, :password_confirmation#Any attributable editable throught a web form should
-  #be on this list. 
-  #Mass assignment. 
+  #be on this list. # Put on this list if you don't want that Mass assignment thing.
   has_secure_password
 
-  before_save { |user| user.email = user.email.downcase }
+  #Keeping everything downcase in the database. 
+  # before_save { |user| user.email = user.email.downcase }
+  before_save { self.email.downcase! } #This is another implementation of the before save callback
 
   #Validating 
-  validates :name, presence: true , length: { maximum: 50 }
+  validates :name, presence: true , length: { maximum: 50 , minimum: 2 }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[\w+\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },

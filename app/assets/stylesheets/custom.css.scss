@@ -1,4 +1,6 @@
 @import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
 
 $lightGray: #999;
 
@@ -7,9 +9,7 @@ html {
 	overflow-y: scroll;
 }
 
-body {
-	padding-top: 60px;
-}
+
 
 section {
 	overflow: auto;
