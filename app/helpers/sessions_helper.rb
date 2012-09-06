@@ -15,8 +15,7 @@ module SessionsHelper
 		#this convention of having a remember_token that stays long is so
 		#common that we can do it this way. 
 		cookies.permanent[:remember_token] = user.remember_token
-
-		current_user = user
+		self.current_user = user
 	end
 
 	def signed_in?
@@ -37,7 +36,7 @@ module SessionsHelper
 	end
 
 	def sign_out
-		current_user = nil
+		self.current_user = nil
 		cookies.delete(:remember_token)
 	end
 
