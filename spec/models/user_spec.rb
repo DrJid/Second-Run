@@ -24,6 +24,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:remember_token) }
 
 
   #Using boolean conventions for testing -- calls the valid?
@@ -134,9 +135,17 @@ describe User do
   		#To specify a property other than the subject(USER) you use specify
   		specify { user_for_invalid_password.should be_false }
   	end
+  end
 
+  describe "remember token" do
+    before { @user.save }
 
+    its(:remember_token) { should_not be_blank }
 
+    #This bottom is written above. 
+    # it "should have a nonblank remember_token" do
+    #   subject.remember_token.should_not be_blank
+    # end
   end
 
 

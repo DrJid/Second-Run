@@ -3,4 +3,6 @@ class ApplicationController < ActionController::Base
 
   #Add a comment in here that messes up the entire program!
   #Should add this to the destructive commit! 
+
+  include SessionsHelper
 end

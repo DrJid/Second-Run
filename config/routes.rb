@@ -2,10 +2,16 @@ SecondRun::Application.routes.draw do
 
   resources :users
 
+  #We need a sessions resource. But we just need these three. 
+  #We're not showing sessions nor updating. Just those 3. 
+  resources :sessions, only: [:new, :create, :destroy]
+
   root to: 'static_pages#home'
 
   #Sign up routes
   match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
 
   match '/help',    to: 'static_pages#help'
