@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:session][:email])
 		if user && user.authenticate(params[:session][:password])
 			sign_in user
-			redirect_to user
+			redirect_back_or user_path(user)
 		else
 			flash.now[:error] = "Invalid login/password combination"
 		#Flash persists for one request. render doesn't constitute a redirect. So the flash stays. 
