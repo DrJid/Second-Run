@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name , :password, :password_confirmation#Any attributable editable throught a web form should
   #be on this list. # Put on this list if you don't want that Mass assignment thing.
   has_secure_password
+  has_many :microposts,  dependent: :destroy
 
 
 
@@ -23,6 +24,11 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  def feed
+    #This is only a proto-feed
+    # self.microposts
+    Micropost.where("user_id = ?", id)
+  end
 
   private
 

@@ -43,10 +43,13 @@ describe "UserPages" do
 		let(:test_user) { FactoryGirl.create(:user, email:"asdf@asdf.com") } #<~ The :user 
 		# in the create should match the one in factory girl
 
+		
+
 		before { visit user_path(test_user) }
 
 		it { should have_selector('h1', text: test_user.name ) }
 		it { should have_selector('title', text: test_user.name) }
+
 	end
 
 	describe "signup" do

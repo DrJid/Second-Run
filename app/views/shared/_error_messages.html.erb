@@ -2,16 +2,16 @@
  This partial was saved in the /shared dir  
 so that it can used sharedly.. you know..  -->
 
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
 
 	<div id="error_explanation">
 
 <!-- Alert and alert error are part of bootstrap. Gives us the nice red error there.  -->
 		<div class="alert alert-error">
-			The form contains <%= pluralize(@user.errors.count, "error") %>
+			The form contains <%= pluralize(object.errors.count, "error") %>
 		</div>
 		<ul>
-			<% @user.errors.full_messages.each do |msg| %>
+			<% object.errors.full_messages.each do |msg| %>
 				<li>* <%= msg %></li>
 			<% end %>
 		</ul>

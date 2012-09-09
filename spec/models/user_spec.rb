@@ -26,6 +26,8 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
+  it { should respond_to(:microposts)}
+
 
   #Using boolean conventions for testing -- calls the valid?
   it { should be_valid }
@@ -156,6 +158,7 @@ describe User do
     #   subject.remember_token.should_not be_blank
     # end
   end
+
 
 
 end
