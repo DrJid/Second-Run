@@ -1,11 +1,18 @@
 SecondRun::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    member do
+      #Indicate the name of the action and the kind of request they respond to. 
+      get :following, :followers
+    end
+  end
 
   #We need a sessions resource. But we just need these three. 
   #We're not showing sessions nor updating. Just those 3. 
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
+
 
   root to: 'static_pages#home'
 

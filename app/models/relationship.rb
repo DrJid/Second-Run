@@ -1,5 +1,5 @@
 class Relationship < ActiveRecord::Base
-  attr_accessible :followed_id, 
+  attr_accessible :followed_id
 
   #We dont' want the :follower_id to editable by the web. That information comes from you 
   # the logged in user For that reason, we got rid of the :follower_id
@@ -7,6 +7,7 @@ class Relationship < ActiveRecord::Base
   # change in t web form
 
 
+#Again, we have to tell Rails what the name of the class is. 
   belongs_to :follower, class_name: "User"
   belongs_to :followed, class_name: "User"
 

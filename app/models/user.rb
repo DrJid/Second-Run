@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   #be on this list. # Put on this list if you don't want that Mass assignment thing.
   has_secure_password
   has_many :microposts,  dependent: :destroy
+  #In the case of micropost, rails knows we want the foreign key to be user_id by default.
+  # 3In the case of relationships, we have to tell rails explicitly
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed 
 
@@ -36,7 +38,8 @@ class User < ActiveRecord::Base
   def feed
     #This is only a proto-feed
     # self.microposts
-    Micropost.where("user_id = ?", id)
+    # Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
 
   def following?(other_user)
@@ -44,6 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def follow!(other_user)
+    #Create! will raise an exception if there is an error. 
     self.relationships.create!(followed_id: other_user.id)
   end
 
